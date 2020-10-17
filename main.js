@@ -34,19 +34,14 @@ client.on("message", (message) => {
     ifStarted = true;
     client.commands.get("begin").execute(message, args), { client: client };
   } else if (command === "challenge") {
-    client.commands.get("challenge").execute({ message: message, client: client }, args);
-  } else if (command === "message") {
     client.commands
-      .get("questiontochannel")
-      .execute({ channelId: "766837344329269249", client: client }, args);
+      .get("challenge")
+      .execute({ message: message, client: client }, args);
   }
   if (ifStarted) {
     if (command === "sc") {
       client.commands.get("ping").execute(message, args);
     }
-  } else if (command === "message") {
-    client.commands
-      .get("questiontochannel")
-      .execute({ channelId: "766837344329269249", client: client }, args);
   }
 });
+
