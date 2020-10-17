@@ -14,7 +14,7 @@ module.exports = {
         setTimeout(() => { 
             clearInterval(timerObj); 
             message.channel.send(`Finished!`);
-        }, 1000*time);
+        }, time);
 
     }
 }

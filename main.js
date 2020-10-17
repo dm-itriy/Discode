@@ -30,20 +30,23 @@ client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
-  // if (command === "begin") {
-  //   ifStarted = true;
-  //   setTimeout(function() {
-  //     ifStarted = false;
-  //   }, 1000 * time);
-  //   client.commands.get("begin").execute(message, time);
-  // }
-  // if (ifStarted) {
-  //   if (command === "sc") {
-  //     client.commands.get("ping").execute(message, args);
-  //   }
-  // } else if (command === "message") {
-  //   client.commands
-  //     .get("questiontochannel")
-  //     .execute({ channelId: "766837344329269249", client: client }, args);
-  // }
+  if (command === "begin") {
+    ifStarted = true;
+    setTimeout(function() {
+      ifStarted = false;
+    }, 1000 * time);
+    client.commands.get("begin").execute(message, time);
+  }
+  
+  // Put things inside this if statement if they should only be run *while*
+  // a competition is happening
+  if (ifStarted) {
+    if (command === "sc") {
+      client.commands.get("ping").execute(message, args);
+    }
+  } else if (command === "message") {
+    client.commands
+      .get("questiontochannel")
+      .execute({ channelId: "766837344329269249", client: client }, args);
+  }
 });
