@@ -1,10 +1,10 @@
 module.exports = {
-    name: "challenge",
-    desription: "This allows users to challenge each other in code",
-    execute(message, args, author) {
-        for(let i = 1; i < args.length; i++){
-            // create a theoretical role
-            /*
+  name: "challenge",
+  desription: "This allows users to challenge each other in code",
+  execute(message, args) {
+    for (let i = 1; i < args.length; i++) {
+      // create a theoretical role
+      /*
             guild.roles.create({
                 data: {
                     name: competitor ${i},
@@ -13,22 +13,30 @@ module.exports = {
                 reason: 'For coding competition',
             })
             */
-            // assign that theoretical role to the arg[i] user
-            /*
+      // assign that theoretical role to the arg[i] user
+      /*
             let role = message.guild.roles.cache.find(r => r.name === `competitor ${i}`);
             let member = args[i].mentions.members.first();
             */
-        }
-
-        // new channel creation code
-          message.guild.channels
-          .create("New Channel", {
-            type: 'text'
-          });
-        message.channel.send('New channel created');
-        // 
-
-        // this is to remove future role give name of role as role
-        // member.roles.remove(role).catch(console.error);
     }
-}
+
+    // new channel creation code
+    message.message.guild.channels
+      .create("User 1 Channel", {
+        type: "text",
+      })
+      .then((channel) => {
+        const channel1 = message.client.channels.cache.find(
+          (c) => c.id === "" + channel.id
+        );
+        // This is the question name:
+        chanel1.send(
+          "Given a non-empty array of integers nums, every element appears twice except for one. Find that single one. Follow up: Could you implement a solution with a linear runtime complexity and without using extra memory?"
+        );
+        // send starter code
+        chanel1.send(
+          "class Solution { \n\t public int singleNumber(int[] nums) { \n\n } \t}"
+        );
+      });
+  },
+};
