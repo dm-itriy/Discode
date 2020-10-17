@@ -30,11 +30,11 @@ module.exports = {
           (c) => c.id === "" + channel.id
         );
         // This is the question name:
-        chanel1.send(
+        channel1.send(
           "Given a non-empty array of integers nums, every element appears twice except for one. Find that single one. Follow up: Could you implement a solution with a linear runtime complexity and without using extra memory?"
         );
         // send starter code
-        chanel1.send(
+        channel1.send(
           "class Solution { \n\t public int singleNumber(int[] nums) { \n\n } \t}"
         );
       });

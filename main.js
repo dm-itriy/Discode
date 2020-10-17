@@ -40,12 +40,13 @@ client.on("message", (message) => {
       .get("questiontochannel")
       .execute({ channelId: "766837344329269249", client: client }, args);
   }
-
   if (ifStarted) {
     if (command === "sc") {
       client.commands.get("ping").execute(message, args);
     }
+  } else if (command === "message") {
+    client.commands
+      .get("questiontochannel")
+      .execute({ channelId: "766837344329269249", client: client }, args);
   }
 });
-
-client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.xrgGdBEyTW0coYTji1uljrBdDAQ");
