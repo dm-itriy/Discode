@@ -36,7 +36,8 @@ function random(size) {
 
 
 // Sample get method
-app.get("/getProblem", (req, res) => {
+app.get("/getProblem/:diff", (req, res) => {
+    console.log(req.params.diff);
     res.status(200).json(
         {
             "bruh": "moment"
