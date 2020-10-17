@@ -32,7 +32,7 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
   if (command === "begin") {
     ifStarted = true;
-    client.commands.get("begin").execute(message, args), { client: client };
+    client.commands.get("begin").execute(message, time);
   } else if (command === "challenge") {
     client.commands.get("challenge").execute({ message: message, client: client }, args);
   } else if (command === "message") {
@@ -50,3 +50,5 @@ client.on("message", (message) => {
       .execute({ channelId: "766837344329269249", client: client }, args);
   }
 });
+
+client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.BQWoRbp4hnKqSMwtcRz6elrDgUM");
