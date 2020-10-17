@@ -29,9 +29,6 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
   if (command === "sc") {
     client.commands.get("ping").execute(message, args);
-  } else if (command === "startcoding") {
-    client.commands.get("start").execute(message, args);
   }
 });
 
-client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.0eQrQ9mmEZx7EKBVzGQkyqw3dTk");
