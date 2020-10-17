@@ -15,7 +15,7 @@ module.exports = {
             */
             // assign that theoretical role to the arg[i] user
             /*
-            let role = message.guild.roles.cache.find(r => r.name === competitor ${i});
+            let role = message.guild.roles.cache.find(r => r.name === `competitor ${i}`);
             let member = args[i].mentions.members.first();
             */
         }
