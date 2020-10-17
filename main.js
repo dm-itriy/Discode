@@ -32,7 +32,7 @@ client.on("message", (message) => {
   const command = args.shift().toLowerCase();
   if (command === "begin") {
     ifStarted = true;
-    client.commands.get("begin").execute(message, args), { client: client };
+    client.commands.get("begin").execute(message, time);
   } else if (command === "challenge") {
     client.commands
       .get("challenge")
