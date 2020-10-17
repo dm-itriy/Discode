@@ -7,6 +7,7 @@ const rimraf = require("rimraf");
 const cors = require('cors')
 const redis = require('redis');
 const amqp = require('amqp-connection-manager');
+const { restart } = require("nodemon");
 
 app.use(cors())
 app.use(bodyParser.urlencoded({extended:true}));
@@ -32,6 +33,17 @@ const extensions = {
 function random(size) {
     return require("crypto").randomBytes(size).toString('hex');
 }
+
+
+// Sample get method
+app.get("/getProblem", (req, res) => {
+    res.status(200).json(
+        {
+            "bruh": "moment"
+        }
+    );
+})
+
 app.post("/submit", (req, res) => {
     console.log(req.body);
 
