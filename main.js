@@ -50,5 +50,3 @@ client.on("message", (message) => {
       .execute({ channelId: "766837344329269249", client: client }, args);
   }
 });
-
-client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.BQWoRbp4hnKqSMwtcRz6elrDgUM");
