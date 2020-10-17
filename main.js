@@ -23,24 +23,21 @@ client.once("ready", () => {
   console.log("Discode is online");
 });
 
-var swit = True;
+let ifStarted = false;
 
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
-  if (command === "sc") {
-    if(swit) {
+  if (command === "begin") {
+    ifStarted = true;
+    client.commands.get("begin").execute(message, args);
+  }
+  if (ifStarted) {
+    if (command === "sc") {
       client.commands.get("ping").execute(message, args);
-    } else {
-      client.commands.get("ping2").execute(message, args);
     }
-  } else if (command === "startcoding") {
-    client.commands.get("start").execute(message, args);
-  } else if (command === "switch") {
-    swit = !swit;
-    client.commands.get("swit").execute(message, args);
   }
 });
 
-client.login();
+client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.lPR_W2h9-DEaFRt0zmu4r9ffQ84");
