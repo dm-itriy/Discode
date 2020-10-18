@@ -11,6 +11,7 @@ module.exports = {
           type: "text",
         })
         .then((channel) => {
+          args.activeChannels.push(channel.id);
           const channel1 = message.client.channels.cache.find(
             (c) => c.id === "" + channel.id
           );
@@ -25,7 +26,7 @@ module.exports = {
           arr.push(channel1);
         });
     }
-
+    console.log(arr, "hello");
     let time = args.time * 1000;
     console.log(arr);
 
