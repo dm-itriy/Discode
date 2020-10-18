@@ -28,7 +28,7 @@ function runCode(apiBody,ch,msg)
     var output;
     var command = 'python3 run.py ../temp/' + apiBody.folder +'/source.' + extensions[apiBody.lang] + ' ' + apiBody.lang + ' '  + apiBody.timeOut + ' ' + apiBody.id;  
 
-    fs.copyFile("./" + apiBody.id + "txt", '/temp/' + apiBody.folder+  '/out.txt', (err) => {
+    fs.copyFile("./" + apiBody.id + ".txt", '/temp/' + apiBody.folder+  '/out.txt', (err) => {
         if (err)
         console.log(err);
         else 
