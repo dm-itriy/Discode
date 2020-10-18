@@ -39,10 +39,10 @@ def run(file,input,timeout,lang):
     else:
         return 400
 
-def match(output):
-    if os.path.isfile('out.txt') and os.path.isfile(output):
-        b = filecmp.cmp('out.txt',output)
-        return b
+def match(output, id):
+    if os.path.isfile(id + '.txt') and os.path.isfile(output):
+        b = filecmp.cmp(id + '.txt',output)
+        return 510
     else:
         return 404
 
@@ -63,7 +63,7 @@ testout =  "output.txt"
 status=compile(file,lang)
 if status ==200:
     status=run(file,testin,timeout,lang)
-if match(testout) == False:
-    status = 510
+status = match(testout, params[4])
+
 print(codes[status])
 
