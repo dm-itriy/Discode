@@ -34,7 +34,7 @@ module.exports = {
       let result = await response.json();
       let codeSubmissionResult = result.status.trim();
       if (result.stderr != "") {
-        console.log("error has occured ", result.stderr);
+        message.channel.send("error has occured ", result.stderr);
       } else if (codeSubmissionResult === "success") {
         let len = args.activeChannels.length;
         message.guild.channels
