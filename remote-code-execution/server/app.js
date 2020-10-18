@@ -72,7 +72,7 @@ app.post("/submit/:id", (req, res) => {
     retObject = {
         'id':data.folder
     }
-    res.status(202).send(retObject);
+    res.status(202).json(retObject);
 
 });
 
