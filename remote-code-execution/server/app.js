@@ -41,7 +41,7 @@ function random(size) {
 // Sample get method
 app.get("/getProblem/:diff", (req, res) => {
     
-    let difficulty = req.params.difficulty
+    let difficulty = req.params.diff
 
     let index = (parseInt(difficulty) - 1) * 3 + Math.floor(Math.random() * 3);
     console.log("got question " + index);
