@@ -43,9 +43,13 @@ app.get("/getProblem", (req, res) => {
     
     let difficulty = req.body.difficulty
 
-    let index = difficulty * 3 + Math.floor(Math.random() * 3);
+    let index = (difficulty - 1) * 3 + Math.floor(Math.random() * 3);
+    console.log("got question " + index);
 
-    res.status(200).json(problems[index]);
+    curr = problems[index];
+    curr.id = index + 1;
+
+    res.status(200).json(curr);
 })
 
 app.post("/submit/:id", (req, res) => {
