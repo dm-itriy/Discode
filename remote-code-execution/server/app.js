@@ -9,6 +9,9 @@ const redis = require('redis');
 const amqp = require('amqp-connection-manager');
 const { restart } = require("nodemon");
 
+const problems = require("./problems")
+const { randomInt } = require("crypto");
+
 app.use(cors())
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
@@ -36,24 +39,33 @@ function random(size) {
 
 
 // Sample get method
-app.get("/getProblem/:diff", (req, res) => {
-    console.log(req.params.diff);
-    res.status(200).json(
-        {
-            "bruh": "moment"
-        }
-    );
+app.get("/getProblem", (req, res) => {
+    
+    let difficulty = req.body.difficulty
+
+    let index = (difficulty - 1) * 3 + Math.floor(Math.random() * 3);
+    console.log("got question " + index);
+
+    curr = problems[index];
+    curr.id = index + 1;
+
+    res.status(200).json(curr);
 })
 
-app.post("/submit", (req, res) => {
+app.post("/submit/:id", (req, res) => {
     console.log(req.body);
 
     let data= {
         'src':req.body.src,
-        'input':req.body.stdin,
         'lang':req.body.lang,
+        'input':"",
         'timeOut':req.body.timeout,
-        'folder':random(10)
+        'folder':random(10),
+        'id':req.params.id
+    }
+    problem = problems[data.id - 1]
+    if (problem.input != "None") {
+        data.input = problem.input;
     }
 
     sendMessage(data);

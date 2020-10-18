@@ -28,11 +28,11 @@ function runCode(apiBody,ch,msg)
     var output;
     var command = 'python3 run.py ../temp/' + apiBody.folder +'/source.' + extensions[apiBody.lang] + ' ' + apiBody.lang + ' '  + apiBody.timeOut;  
 
-    fs.copyFile("./out.txt", '/temp/' + apiBody.folder+  '/out.txt', (err) => {
+    fs.copyFile("./problems/" + apiBody.id + ".txt", '/temp/' + apiBody.folder+  '/out.txt', (err) => {
         if (err)
         console.log(err);
         else 
-        console.log("out.txt copied");
+        console.log(apiBody.id + ".txt copied");
     })
 
     fs.writeFile('/temp/' + apiBody.folder+  '/output.txt','',function(err){
