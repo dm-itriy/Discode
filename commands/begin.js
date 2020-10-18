@@ -28,6 +28,7 @@ module.exports = {
     }
     console.log(arr, "hello");
     let time = args.time * 1000;
+    console.log(arr);
 
     let timerObj = setInterval(function () {
       time -= 600000;
