@@ -69,7 +69,7 @@ app.post("/submit/:id", (req, res) => {
     }
 
     sendMessage(data);
-    res.status(202).send('http://localhost:7000/results/'+data.folder);
+    res.status(202).send('http://34.68.1.129:7000/results/'+data.folder);
 
 });
 
