@@ -26,7 +26,9 @@ client.once("ready", () => {
 let time = 3600;
 let ifStarted = false;
 let currentQuestionID = -1;
+let diff = 1;
 let activeChannels = [];
+let timeObjs = [];
 
 client.on("message", (message) => {
   if (message.author.bot) return;
@@ -47,9 +49,29 @@ client.on("message", (message) => {
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
 
-  if (command === "begin") {
+  if (command === "diff") {
+    if (Number(args[0]) % 1 === 0 && args[0] >= 1 && args[0] <= 3) {
+      diff = args[0];
+      message.channel.send(`Difficulty has been set to ${diff}`);
+    } else {
+      message.channel.send(
+        "Not a valid difficulty. Valid difficulties lie between 1 and 3."
+      );
+    }
+  } else if (command === "begin") {
     ifStarted = true;
     getQuestion(message, args);
+    client.commands
+      .get("begin")
+      .execute(
+        { message: message, client: client },
+        {
+          time: time,
+          args: args,
+          activeChannels: activeChannels,
+          timeObjs: timeObjs,
+        }
+      );
     setTimeout(() => {
       ifStarted = false;
     }, time * 1000);
@@ -70,4 +92,4 @@ async function getQuestion(message, args) {
     );
 }
 
-client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.Pox8wYVNY9-M_hkCwEnPLOBRMYs");
+client.login("");

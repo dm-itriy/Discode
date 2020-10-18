@@ -39,11 +39,11 @@ function random(size) {
 
 
 // Sample get method
-app.get("/getProblem", (req, res) => {
+app.get("/getProblem/:diff", (req, res) => {
     
-    let difficulty = req.body.difficulty
+    let difficulty = req.params.diff
 
-    let index = (difficulty - 1) * 3 + Math.floor(Math.random() * 3);
+    let index = (parseInt(difficulty) - 1) * 3 + Math.floor(Math.random() * 3);
     console.log("got question " + index);
 
     curr = problems[index];
@@ -69,7 +69,7 @@ app.post("/submit/:id", (req, res) => {
     }
 
     sendMessage(data);
-    res.status(202).send('http://localhost:7000/results/'+data.folder);
+    res.status(202).send(data.folder);
 
 });
 
