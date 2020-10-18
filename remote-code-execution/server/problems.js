@@ -24,6 +24,11 @@ let Problems = [
         "On the first line, output the number of distinct words from the input.\n"+
         "On the second line, output the number of occurrences for each distinct word according to their appearance in the input.\n",
         input: "4\nbcdef\nabcdefg\nbcde\nbcdef\n"
+    },
+    {
+        prompt: "You are climbing a stair case. It takes n steps to reach to the top.\n" +
+        "Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?\n",
+        input: "3"
     }
 ]
 
