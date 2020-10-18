@@ -25,13 +25,21 @@ client.once("ready", () => {
 
 let time = 3600;
 let ifStarted = false;
+let diff = 1;
 
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
 
-  if (command === "begin") {
+  if (command === "diff") {
+    if(Number(args[0]) % 1 === 0 && args[0] >= 1 && args[0] <= 3) {
+      diff = args[0];
+      message.channel.send(`Difficulty has been set to ${diff}`);
+    } else {
+      message.channel.send("Not a valid difficulty. Valid difficulties lie between 1 and 3.")
+    }
+  } else if (command === "begin") {
     ifStarted = true;
     client.commands
       .get("begin")
