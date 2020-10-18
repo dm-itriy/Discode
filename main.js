@@ -64,7 +64,11 @@ client.on("message", (message) => {
       );
     }
   } else if (command === "begin") {
-    getQuestion(message, args);
+    if (activeChannels.length != 0) {
+      message.channel.send("A competition is already in progress!");
+    } else {
+      getQuestion(message, args);
+    }
   } else if (command === "ping") {
     client.commands.get("ping").execute(message, args);
   }
@@ -81,5 +85,4 @@ async function getQuestion(message, args) {
   );
 }
 
-// let key = fs.readFileSync("key.txt", "utf8");
-client.login('NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.aSn6cDifSzJAHfRosdCWPbUQn3U');
+let key = fs.readFileSync("key.txt", "utf8");
