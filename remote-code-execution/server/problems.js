@@ -14,6 +14,10 @@ let Problems = [
         prompt: "Given an integer from standard input, print 1 if it\'s prime and 0 if it\'s not.",
         input: 5
     },
+    {
+        prompt: "Given an integer, N, print its first 10 multiples. Each multiple N x i (where 1 ≤ i ≤ 10) should be printed on a new line in the form: N x i = result.",
+        input: 2
+    }
 ]
 
 module.exports = Problems
