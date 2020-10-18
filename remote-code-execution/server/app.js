@@ -39,11 +39,11 @@ function random(size) {
 
 
 // Sample get method
-app.get("/getProblem", (req, res) => {
+app.get("/getProblem/:diff", (req, res) => {
     
-    let difficulty = req.body.difficulty
+    let difficulty = req.params.difficulty
 
-    let index = (difficulty - 1) * 3 + Math.floor(Math.random() * 3);
+    let index = (parseInt(difficulty) - 1) * 3 + Math.floor(Math.random() * 3);
     console.log("got question " + index);
 
     curr = problems[index];
