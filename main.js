@@ -27,6 +27,7 @@ let time = 3600;
 let ifStarted = false;
 let diff = 1;
 let activeChannels = [];
+let timeObjs = [];
 
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -56,7 +57,7 @@ client.on("message", (message) => {
       .get("begin")
       .execute(
         { message: message, client: client },
-        { time: time, args: args, activeChannels: activeChannels }
+        { time: time, args: args, activeChannels: activeChannels, timeObjs: timeObjs }
       );
     setTimeout(() => {
       ifStarted = false;
@@ -72,3 +73,5 @@ client.on("message", (message) => {
     }
   }
 });
+
+client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.QsrNK0eqaboGp2DxMuGgzQ0E_xg");
