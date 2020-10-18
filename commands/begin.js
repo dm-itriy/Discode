@@ -41,28 +41,7 @@ module.exports = {
             arr.push(channel1);
           });
       }
-      times = [];
-      timeObjs = [];
-      for (let i = 0; i < arr.length; i++) {
-        times.push(args.time * 1000);
-      }
 
-      for (let i = 0; i < arr.length; i++) {
-        let timerObj = setInterval(function () {
-          times[i] -= 600000;
-          let currentChannel = arr[i];
-          currentChannel.send(`${times[i] / 60000} minutes remaining!`);
-        }, 600000);
-        args.timeObjs.push({ timer: timerObj, timerEnd: null });
-      }
-      for (let i = 0; i < arr.length; i++) {
-        let timerStop = setTimeout(() => {
-          let currentChannel = arr[i];
-          currentChannel.send(`Finished!`);
-          clearInterval(args.timeObjs[i].timer);
-        }, args.time * 1000);
-        args.timeObjs[i].timerEnd = timerStop;
-      }
       return questionID;
     } catch (e) {
       console.log(e);
