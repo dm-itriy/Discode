@@ -17,7 +17,6 @@ module.exports = {
       const result = await response.json();
       question = result.prompt;
       questionID = result.id;
-      console.log("init id", questionID);
 
       let arr = [];
       for (let i = 0; i < args.args.length; i++) {
@@ -28,18 +27,14 @@ module.exports = {
             type: "text",
           })
           .then((channel) => {
-            args.activeChannels.push(channel.id);
+            args.activeChannels.push(channel);
             const channel1 = message.client.channels.cache.find(
               (c) => c.id === "" + channel.id
             );
             // This is the question name:
-            channel1.send(
-              "Given a non-empty array of integers nums, every element appears twice except for one. Find that single one. Follow up: Could you implement a solution with a linear runtime complexity and without using extra memory?"
-            );
+            channel1.send(question);
             // send starter code
-            channel1.send(
-              "```class Solution { \n\t public int singleNumber(int[] nums) { \n\n } \t} ```"
-            );
+            channel1.send("```... type your code here ```");
             arr.push(channel1);
           });
       }
@@ -65,8 +60,9 @@ module.exports = {
         }, args.time * 1000);
         args.timeObjs[i].timerEnd = timerStop;
       }
+      return questionID;
     } catch (e) {
-      console.log();
+      console.log(e);
     }
   },
 };

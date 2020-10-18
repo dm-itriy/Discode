@@ -38,9 +38,11 @@ client.on("message", (message) => {
     message.content = message.content.replace("```", "");
     message.content.trim();
     // submit code
+    console.log("currentQuestionID", currentQuestionID);
     client.commands.get("submit").execute(message, {
       activeChannels: activeChannels,
       currentQuestionID: currentQuestionID,
+      timeObjs: timeObjs,
     });
   }
 
@@ -61,20 +63,11 @@ client.on("message", (message) => {
   } else if (command === "begin") {
     ifStarted = true;
     getQuestion(message, args);
-    client.commands
-      .get("begin")
-      .execute(
-        { message: message, client: client },
-        {
-          time: time,
-          args: args,
-          activeChannels: activeChannels,
-          timeObjs: timeObjs,
-        }
-      );
     setTimeout(() => {
       ifStarted = false;
     }, time * 1000);
+  } else if (command === "ping") {
+    client.commands.get("ping").execute(message, args);
   }
   if (ifStarted) {
     if (command === "sc") {
@@ -84,12 +77,15 @@ client.on("message", (message) => {
 });
 
 async function getQuestion(message, args) {
-  currentQuestionID = await client.commands
-    .get("begin")
-    .execute(
-      { message: message, client: client },
-      { time: time, args: args, activeChannels: activeChannels }
-    );
+  currentQuestionID = await client.commands.get("begin").execute(
+    { message: message, client: client },
+    {
+      time: time,
+      args: args,
+      activeChannels: activeChannels,
+      timeObjs: timeObjs,
+    }
+  );
 }
 
-client.login("");
+client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA._0tpT_9W22V5PnKZD_GoAkV8TuQ");
