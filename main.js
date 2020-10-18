@@ -35,7 +35,10 @@ client.on("message", (message) => {
     ifStarted = true;
     client.commands
       .get("begin")
-      .execute({ message: message, client: client }, time);
+      .execute(
+        { message: message, client: client },
+        { time: time, args: args }
+      );
     setTimeout(() => {
       ifStarted = false;
     }, time * 1000);
