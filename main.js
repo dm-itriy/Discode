@@ -38,7 +38,6 @@ client.on("message", (message) => {
     message.content = message.content.replace("```", "");
     message.content.trim();
     // submit code
-    console.log("currentQuestionID", currentQuestionID);
     client.commands.get("submit").execute(message, {
       activeChannels: activeChannels,
       currentQuestionID: currentQuestionID,
@@ -50,8 +49,13 @@ client.on("message", (message) => {
 
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
-
-  if (command === "diff") {
+  if (
+    command === "exit" &&
+    (activeChannels.includes(message.channel) ||
+      message.channel.name === "results")
+  ) {
+    client.commands.get("exit").execute(message, args);
+  } else if (command === "diff") {
     if (Number(args[0]) % 1 === 0 && args[0] >= 1 && args[0] <= 3) {
       diff = args[0];
       message.channel.send(`Difficulty has been set to ${diff}`);
@@ -84,8 +88,10 @@ async function getQuestion(message, args) {
       args: args,
       activeChannels: activeChannels,
       timeObjs: timeObjs,
+      diff: diff,
     }
   );
 }
 
-client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA._0tpT_9W22V5PnKZD_GoAkV8TuQ");
+let key = fs.readFileSync("key.txt", "utf8");
+client.login(key);

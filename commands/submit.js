@@ -47,9 +47,10 @@ module.exports = {
             );
             console.log(message);
             results.send("Below is the correct code:");
-            results.send(message.content);
-            results.send("This was done in: ");
-            results.send("Congrats: " + message.channel.name + ", nice win");
+            results.send("```" + message.content + "```");
+            results.send("Congrats! " + message.channel.name + " won :)", {
+              tts: true,
+            });
           });
 
         for (let i = 0; i < len; i++) {
