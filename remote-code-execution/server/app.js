@@ -9,6 +9,9 @@ const redis = require('redis');
 const amqp = require('amqp-connection-manager');
 const { restart } = require("nodemon");
 
+const { problems } = require("./problems");
+const { randomInt } = require("crypto");
+
 app.use(cors())
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
@@ -37,12 +40,12 @@ function random(size) {
 
 // Sample get method
 app.get("/getProblem/:diff", (req, res) => {
-    console.log(req.params.diff);
-    res.status(200).json(
-        {
-            "bruh": "moment"
-        }
-    );
+    
+    let difficulty = req.body.difficulty
+
+    let index = difficulty * 3 + randomInt(3);
+
+    res.status(200).json(problems[index]);
 })
 
 app.post("/submit", (req, res) => {
