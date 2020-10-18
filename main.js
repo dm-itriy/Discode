@@ -30,9 +30,15 @@ client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
+
   if (command === "begin") {
     ifStarted = true;
-    client.commands.get("begin").execute(message, time);
+    client.commands
+      .get("begin")
+      .execute({ message: message, client: client }, time);
+    setTimeout(() => {
+      ifStarted = false;
+    }, time * 1000);
   } else if (command === "challenge") {
     client.commands
       .get("challenge")
@@ -44,4 +50,3 @@ client.on("message", (message) => {
     }
   }
 });
-
