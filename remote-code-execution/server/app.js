@@ -57,11 +57,15 @@ app.post("/submit/:id", (req, res) => {
 
     let data= {
         'src':req.body.src,
-        'input':req.body.stdin,
         'lang':req.body.lang,
+        'input':"",
         'timeOut':req.body.timeout,
         'folder':random(10),
         'id':req.params.id
+    }
+    problem = problems[data.id - 1]
+    if (problem.input != "None") {
+        data.input = problem.input;
     }
 
     sendMessage(data);
