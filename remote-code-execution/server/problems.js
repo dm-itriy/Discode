@@ -15,8 +15,15 @@ let Problems = [
         input: 5
     },
     {
-        prompt: "Given an integer, N, print its first 10 multiples. Each multiple N x i (where 1 ≤ i ≤ 10) should be printed on a new line in the form: N x i = result.",
-        input: 2
+        prompt: "You are given __n__ words. Some words may repeat. For each word, output its number of occurrences.\n" + 
+        "The output order should correspond with the input order of appearance of the word.\n" +
+        "Input Format\n"+
+        "The first line contains the integer, __n__ .\n" +
+        "The next __n__ lines each contain a word.\n" +
+        "Output 2 lines.\n" +
+        "On the first line, output the number of distinct words from the input.\n"+
+        "On the second line, output the number of occurrences for each distinct word according to their appearance in the input.\n",
+        input: "4\nbcdef\nabcdefg\nbcde\nbcdef\n"
     }
 ]
 
