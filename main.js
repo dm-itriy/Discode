@@ -25,9 +25,20 @@ client.once("ready", () => {
 
 let time = 3600;
 let ifStarted = false;
+let activeChannels = [];
 
 client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+  if (message.content.startsWith("```")) {
+    message.content = message.content.replace("```", "");
+    message.content = message.content.replace("```", "");
+    // submit code
+    client.commands
+      .get("submit")
+      .execute(message, { activeChannels: activeChannels });
+  }
+
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
 
@@ -37,7 +48,7 @@ client.on("message", (message) => {
       .get("begin")
       .execute(
         { message: message, client: client },
-        { time: time, args: args }
+        { time: time, args: args, activeChannels: activeChannels }
       );
     setTimeout(() => {
       ifStarted = false;
