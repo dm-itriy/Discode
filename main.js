@@ -46,7 +46,9 @@ client.on("message", (message) => {
 
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
-  if (
+  if (command === "help") {
+    client.commands.get("help").execute(message, args);
+  } else if (
     command === "exit" &&
     (activeChannels.includes(message.channel) ||
       message.channel.name === "results")
@@ -80,4 +82,4 @@ async function getQuestion(message, args) {
 }
 
 // let key = fs.readFileSync("key.txt", "utf8");
-client.login('NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.r_uxDLa30X6t8ES2yAHsFJ4c4gE');
+client.login('NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.aSn6cDifSzJAHfRosdCWPbUQn3U');
