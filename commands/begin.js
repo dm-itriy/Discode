@@ -1,12 +1,12 @@
 module.exports = {
   name: "begin",
   desription: "starting the bot's functionality",
-  execute(message, args) {
+  async execute(message, args) {
     let arr = [];
     for (let i = 0; i < args.args.length; i++) {
       let member = args.args[i];
       // new channel creation code
-      message.message.guild.channels
+      await message.message.guild.channels
         .create(member, {
           type: "text",
         })
@@ -27,6 +27,7 @@ module.exports = {
     }
 
     let time = args.time * 1000;
+    console.log(arr);
 
     let timerObj = setInterval(function () {
       time -= 600000;
