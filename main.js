@@ -33,6 +33,9 @@ client.on("message", (message) => {
   if (command === "begin") {
     ifStarted = true;
     client.commands.get("begin").execute(message, time);
+    setTimeout(() => { 
+      ifStarted = false;
+    }, time * 1000);
   } else if (command === "challenge") {
     client.commands.get("challenge").execute({ message: message, client: client }, args);
   } else if (command === "message") {
