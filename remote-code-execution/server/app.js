@@ -45,7 +45,7 @@ app.get("/getProblem/:diff", (req, res) => {
     );
 })
 
-app.post("/submit", (req, res) => {
+app.post("/submit/:id", (req, res) => {
     console.log(req.body);
 
     let data= {
@@ -53,7 +53,8 @@ app.post("/submit", (req, res) => {
         'input':req.body.stdin,
         'lang':req.body.lang,
         'timeOut':req.body.timeout,
-        'folder':random(10)
+        'folder':random(10),
+        'id':req.params.id
     }
 
     sendMessage(data);
