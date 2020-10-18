@@ -25,38 +25,34 @@ client.once("ready", () => {
 
 let time = 3600;
 let ifStarted = false;
+let currentQuestionID = -1;
 let activeChannels = [];
 
 client.on("message", (message) => {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (message.author.bot) return;
 
   if (message.content.startsWith("```")) {
     message.content = message.content.replace("```", "");
     message.content = message.content.replace("```", "");
+    message.content.trim();
     // submit code
-    client.commands
-      .get("submit")
-      .execute(message, { activeChannels: activeChannels });
+    client.commands.get("submit").execute(message, {
+      activeChannels: activeChannels,
+      currentQuestionID: currentQuestionID,
+    });
   }
+
+  if (!message.content.startsWith(prefix)) return;
 
   const args = message.content.slice(prefix.length).split(" ");
   const command = args.shift().toLowerCase();
 
   if (command === "begin") {
     ifStarted = true;
-    client.commands
-      .get("begin")
-      .execute(
-        { message: message, client: client },
-        { time: time, args: args, activeChannels: activeChannels }
-      );
+    getQuestion(message, args);
     setTimeout(() => {
       ifStarted = false;
     }, time * 1000);
-  } else if (command === "challenge") {
-    client.commands
-      .get("challenge")
-      .execute({ message: message, client: client }, args);
   }
   if (ifStarted) {
     if (command === "sc") {
@@ -64,3 +60,14 @@ client.on("message", (message) => {
     }
   }
 });
+
+async function getQuestion(message, args) {
+  currentQuestionID = await client.commands
+    .get("begin")
+    .execute(
+      { message: message, client: client },
+      { time: time, args: args, activeChannels: activeChannels }
+    );
+}
+
+client.login("NzY3MTE1NzU0NTc5MDM0MTEy.X4tOOA.Pox8wYVNY9-M_hkCwEnPLOBRMYs");

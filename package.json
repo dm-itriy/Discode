@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/raymondpg/Discode#readme",
   "dependencies": {
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.3.1",
+    "node-fetch": "^2.6.1"
   }
 }
