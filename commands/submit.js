@@ -45,7 +45,6 @@ module.exports = {
             const results = message.client.channels.cache.find(
               (c) => c.id === "" + channel.id
             );
-            console.log(message);
             results.send("Below is the correct code:");
             results.send("```" + message.content + "```");
             results.send("Congrats! " + message.channel.name + " won :)", {
@@ -55,7 +54,6 @@ module.exports = {
 
         for (let i = 0; i < len; i++) {
           let removedChannel = args.activeChannels.shift();
-          clearInterval(args.timeObjs[i]);
           removedChannel.delete();
         }
       } else if (codeSubmissionResult === "incorrect") {
