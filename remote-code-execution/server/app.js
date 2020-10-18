@@ -9,7 +9,7 @@ const redis = require('redis');
 const amqp = require('amqp-connection-manager');
 const { restart } = require("nodemon");
 
-const { problems } = require("./problems");
+const problems = require("./problems")
 const { randomInt } = require("crypto");
 
 app.use(cors())
@@ -39,11 +39,11 @@ function random(size) {
 
 
 // Sample get method
-app.get("/getProblem/:diff", (req, res) => {
+app.get("/getProblem", (req, res) => {
     
     let difficulty = req.body.difficulty
 
-    let index = difficulty * 3 + randomInt(3);
+    let index = difficulty * 3 + Math.floor(Math.random() * 3);
 
     res.status(200).json(problems[index]);
 })

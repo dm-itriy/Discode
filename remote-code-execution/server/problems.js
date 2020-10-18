@@ -16,5 +16,4 @@ let Problems = [
     },
 ]
 
-
-export const Problems;
+module.exports = Problems
