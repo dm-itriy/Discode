@@ -8,12 +8,15 @@ module.exports = {
       let question = "";
       let questionID = "";
 
-      const response = await fetch(`http://34.68.1.129:7000/getProblem/${1}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://34.68.1.129:7000/getProblem/${args.diff}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const result = await response.json();
       question = result.prompt;
       questionID = result.id;
