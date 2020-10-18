@@ -69,7 +69,10 @@ app.post("/submit/:id", (req, res) => {
     }
 
     sendMessage(data);
-    res.status(202).send(data.folder);
+    retObject = {
+        'id':data.folder
+    }
+    res.status(202).send(retObject);
 
 });
 
