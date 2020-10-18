@@ -1,6 +1,6 @@
 import os, filecmp ,sys
 
-codes = {200:'success',404:'file not found',400:'error',408:'timeout'}
+codes = {200:'success',404:'file not found',400:'error',408:'timeout',510:'incorrect'}
 
 def compile(file,lang):
 
@@ -42,7 +42,6 @@ def run(file,input,timeout,lang):
 def match(output):
     if os.path.isfile('out.txt') and os.path.isfile(output):
         b = filecmp.cmp('out.txt',output)
-        os.remove('out.txt')
         return b
     else:
         return 404
@@ -64,5 +63,7 @@ testout =  "output.txt"
 status=compile(file,lang)
 if status ==200:
     status=run(file,testin,timeout,lang)
+if match(testout) == False:
+    status = 510
 print(codes[status])
 
